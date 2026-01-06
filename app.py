@@ -1,7 +1,6 @@
 import streamlit as st
 import re
 import pandas as pd
-import matplotlib.pyplot as plt
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 import pickle
@@ -36,7 +35,7 @@ def stemming(content):
 
 # ---------------- Streamlit UI ----------------
 st.title('Twitter/X Sentiment Analysis App')
-st.subheader("Logistic Regression Model using TF-IDF")
+h = st.subheader("Logistic Regression Model using TF-IDF")
 
 # ====== CREATE TABS ======
 tab1, tab2 = st.tabs(["📝 Single Text Prediction", "📂 Bulk Prediction"])
@@ -102,14 +101,6 @@ with tab2:
         st.subheader("📋 Prediction Results")
         st.dataframe(df[["text", "sentiment"]])
 
-        # Pie chart
-        st.subheader("📊 Sentiment Distribution")
-
-        sentiment_counts = df["sentiment"].value_counts()
-        fig, ax = plt.subplots()
-        ax.pie(sentiment_counts, labels=sentiment_counts.index, autopct='%1.1f%%')
-        ax.axis('equal')
-        st.pyplot(fig)
 
         # Download CSV
         st.subheader("⬇️ Download Results")
@@ -122,6 +113,3 @@ with tab2:
             file_name="sentiment_predictions.csv",
             mime="text/csv"
         )
-
-
-## "Run: python -m streamlit run app.py
