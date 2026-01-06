@@ -49,6 +49,7 @@ with tab1:
     user_input = st.text_area('Enter your comment here:')
 
     if st.button('Predict Sentiment', key="single"):
+        st.balloons()
         if user_input.strip():
             stemmed_input = stemming(user_input)
             input_vector = vectorizer.transform([stemmed_input])
